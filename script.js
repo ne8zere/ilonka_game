@@ -1,7 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const scale = 20;
+const scale = 30; // Більше — більші іконки
 const rows = canvas.height / scale;
 const columns = canvas.width / scale;
 
@@ -72,7 +72,37 @@ function gameLoop() {
     }
   }
 
-  setTimeout(gameLoop, 150);
+  setTimeout(gameLoop, 200); // Повільніше
 }
 
 gameLoop();
+
+// 👇 Свайп-контроль (перенесений нижче)
+let touchStartX = 0;
+let touchStartY = 0;
+
+canvas.addEventListener('touchstart', function(e) {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, false);
+
+canvas.addEventListener('touchmove', function(e) {
+  if (!touchStartX || !touchStartY) return;
+
+  let touchEndX = e.touches[0].clientX;
+  let touchEndY = e.touches[0].clientY;
+
+  let dx = touchEndX - touchStartX;
+  let dy = touchEndY - touchStartY;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    if (dx > 0 && direction !== 'LEFT') direction = 'RIGHT';
+    else if (dx < 0 && direction !== 'RIGHT') direction = 'LEFT';
+  } else {
+    if (dy > 0 && direction !== 'UP') direction = 'DOWN';
+    else if (dy < 0 && direction !== 'DOWN') direction = 'UP';
+  }
+
+  touchStartX = 0;
+  touchStartY = 0;
+}, false);
