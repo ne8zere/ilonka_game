@@ -106,3 +106,11 @@ canvas.addEventListener('touchmove', function(e) {
   touchStartX = 0;
   touchStartY = 0;
 }, false);
+
+function setDirection(dir) {
+    if (dir === 'UP' && direction !== 'DOWN') direction = 'UP';
+    if (dir === 'DOWN' && direction !== 'UP') direction = 'DOWN';
+    if (dir === 'LEFT' && direction !== 'RIGHT') direction = 'LEFT';
+    if (dir === 'RIGHT' && direction !== 'LEFT') direction = 'RIGHT';
+  }
+  
