@@ -93,7 +93,7 @@ function gameLoop() {
     }
   }
 
-  setTimeout(gameLoop, 100); // Швидше — 100 мс
+  setTimeout(gameLoop, 400); // Повільніше — 400 мс
 }
 
 gameLoop();
