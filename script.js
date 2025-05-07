@@ -26,6 +26,20 @@ function initSnake() {
 }
 initSnake();
 
+// Оновлення напрямку при натисканні на кнопки
+document.getElementById('up').addEventListener('click', function() {
+  setDirection('UP');
+});
+document.getElementById('down').addEventListener('click', function() {
+  setDirection('DOWN');
+});
+document.getElementById('left').addEventListener('click', function() {
+  setDirection('LEFT');
+});
+document.getElementById('right').addEventListener('click', function() {
+  setDirection('RIGHT');
+});
+
 window.addEventListener('keydown', e => {
   switch (e.key) {
     case 'ArrowUp': if (direction !== 'DOWN') direction = 'UP'; break;
@@ -34,6 +48,13 @@ window.addEventListener('keydown', e => {
     case 'ArrowRight': if (direction !== 'LEFT') direction = 'RIGHT'; break;
   }
 });
+
+function setDirection(dir) {
+  if (dir === 'UP' && direction !== 'DOWN') direction = 'UP';
+  if (dir === 'DOWN' && direction !== 'UP') direction = 'DOWN';
+  if (dir === 'LEFT' && direction !== 'RIGHT') direction = 'LEFT';
+  if (dir === 'RIGHT' && direction !== 'LEFT') direction = 'RIGHT';
+}
 
 function gameLoop() {
   let head = { ...snake[0] };
@@ -72,7 +93,7 @@ function gameLoop() {
     }
   }
 
-  setTimeout(gameLoop, 200); // Повільніше
+  setTimeout(gameLoop, 100); // Швидше — 100 мс
 }
 
 gameLoop();
@@ -106,11 +127,3 @@ canvas.addEventListener('touchmove', function(e) {
   touchStartX = 0;
   touchStartY = 0;
 }, false);
-
-function setDirection(dir) {
-    if (dir === 'UP' && direction !== 'DOWN') direction = 'UP';
-    if (dir === 'DOWN' && direction !== 'UP') direction = 'DOWN';
-    if (dir === 'LEFT' && direction !== 'RIGHT') direction = 'LEFT';
-    if (dir === 'RIGHT' && direction !== 'LEFT') direction = 'RIGHT';
-  }
-  

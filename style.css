@@ -5,58 +5,68 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  
-  canvas {
+    flex-direction: column; /* для гарного вертикального вирівнювання */
+}
+
+canvas {
     background-color: #222;
     border: 2px solid #fff;
     image-rendering: pixelated;
-  }
-  
-  #controls {
+}
+
+#controls {
     position: fixed;
     bottom: 20px;
     left: 0;
     right: 0;
     text-align: center;
     z-index: 10;
-    padding: 0 20px; 
-  }
-  
-  #controls button {
-    font-size: 48px; 
-    padding: 20px 30px; 
+    padding: 0 20px;
+    display: flex; /* для вертикального вирівнювання */
+    flex-direction: column; /* Створення вертикальної осі для кнопок */
+    justify-content: center; /* Центрування кнопок */
+    align-items: center; /* Центрування кнопок */
+}
+
+#controls button {
+    font-size: 48px;
+    padding: 20px 30px;
     margin: 10px;
-    border-radius: 12px; 
+    border-radius: 12px;
     border: none;
     background: #fff;
     color: #000;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-    width: 80px; 
-    height: 80px; 
-    font-weight: bold; 
-  }
-  
-  #controls div {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 80px;
+    height: 80px;
+    font-weight: bold;
+    transition: transform 0.1s ease-in-out;
+}
+
+#controls button:active {
+    transform: scale(0.95); /* Легке зменшення кнопок при натисканні */
+}
+
+#controls div {
     display: flex;
     justify-content: center;
-  }
-  
-  @media (max-width: 600px) {
+    gap: 10px; /* Між кнопками буде рівномірний проміжок */
+}
+
+@media (max-width: 600px) {
     #controls button {
-      font-size: 40px; 
-      padding: 15px 20px;
-      width: 70px; 
-      height: 70px; 
+        font-size: 40px;
+        padding: 15px 20px;
+        width: 70px;
+        height: 70px;
     }
-  }
-  
-  @media (max-width: 400px) {
+}
+
+@media (max-width: 400px) {
     #controls button {
-      font-size: 36px;
-      padding: 12px 15px;
-      width: 60px; 
-      height: 60px;
+        font-size: 36px;
+        padding: 12px 15px;
+        width: 60px;
+        height: 60px;
     }
-  }
-  
+}
